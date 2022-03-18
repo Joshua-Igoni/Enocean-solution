@@ -1,8 +1,8 @@
 #!/bin/bash
 
-sudo su
-apt-get udate
-apt install -y docker.io
+
+sudo apt-get udate
+sudo apt install -y docker.io
 wget https://www.openssl.org/source/old/1.1.0/openssl-1.1.0g.tar.gz
 tar xzvf openssl-1.0.2l.tar.gz
 cd openssl-1.0.2l
@@ -24,8 +24,8 @@ cd nginx
 openssl genrsa -out dev.localhost.key 2048
 openssl req -new -key dev.localhost.key -subj /CN=NG/ -out dev.localhost.crt
 openssl x509 -req -days 3650 -in dev.localhost.crt -signkey dev.localhost.key -out dev.localhost.key
-rm /etc/nginx/nginx.conf
-mv nginx.conf /etc/nginx/
+sudo rm /etc/nginx/nginx.conf
+sudo mv nginx.conf /etc/nginx/
 cd ..
 cd local_deployment
 docker-compose up -d
