@@ -4,7 +4,6 @@
 sudo apt-get update
 sudo apt install -y docker.io nginx docker-compose
 openssl version -a
-cd ..
 docker-compose --version
 cd env_vars
 echo "password" > a_password
