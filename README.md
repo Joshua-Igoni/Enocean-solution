@@ -79,3 +79,7 @@ Place the renamed keys in the following directory in the cloned repo
 ```bash
   Enocean-solution/deploy/nginx/
 ```
+
+### Post Deployment
+
+After stack has been successfully deployed, you can procceed to https://your_ip:443 to onboard your devices
