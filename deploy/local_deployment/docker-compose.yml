@@ -63,8 +63,8 @@ services:
             - source: secret-proxy-key
               target: /etc/nginx/certs/cert.key
         environment:
-            - BASIC_AUTH_USERNAME=$auth_username   #enter new username for API connection of IoTC. e.g. user1
-            - BASIC_AUTH_PASSWORD=$auth_password   #enter new password for API connection to IoTC. e.g. 5a4sdFa$dsa
+            - BASIC_AUTH_USERNAME="${auth_username}"   #enter new username for API connection of IoTC. e.g. user1
+            - BASIC_AUTH_PASSWORD="${a_password}"  #enter new password for API connection to IoTC. e.g. 5a4sdFa$dsa
         depends_on:
             - ingress
             - api
