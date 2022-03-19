@@ -62,8 +62,8 @@ services:
               target: /etc/nginx/certs/cert.crt
             - source: secret-proxy-key
               target: /etc/nginx/certs/cert.key
+            - BASIC_AUTH_USERNAME
         environment:
-            - BASIC_AUTH_USERNAME="${auth_username}"   #enter new username for API connection of IoTC. e.g. user1
             - BASIC_AUTH_PASSWORD="${a_password}"  #enter new password for API connection to IoTC. e.g. 5a4sdFa$dsa
         depends_on:
             - ingress
@@ -92,7 +92,7 @@ volumes:
 
 #secrets are defined by docker to keep sensitive information hidden
 secrets:
-    auth_password:
+    BASIC_AUTH_USERNAME:
         file: ../env_vars/a_password.txt
     auth_username:
         file: ../env_vars/a_username.txt
