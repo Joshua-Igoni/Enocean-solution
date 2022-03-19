@@ -8,9 +8,7 @@ sudo chown $USER /var/run/docker.sock
 openssl version -a
 docker-compose --version
 cd deploy/nginx
-openssl genrsa -out dev.localhost.key 2048
-openssl req -new -key dev.localhost.key -subj /CN=NG/ -out dev.localhost.csr
-openssl x509 -req -days 3650 -in dev.localhost.csr -signkey dev.localhost.key -out dev.localhost.key 
+openssl req -newkey rsa:4096 -x509 -sha256 -nodes -days 365 -out dev.localhost.crt -keyout dev.localhost.key
 cd ../local_deployment
 docker-compose up -d
 
