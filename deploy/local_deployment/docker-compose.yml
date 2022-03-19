@@ -92,18 +92,6 @@ volumes:
 
 #secrets are defined by docker to keep sensitive information hidden
 secrets:
-    auth_password:
-        file: ../env_vars/a_password.txt
-    auth_username:
-        file: ../env_vars/a_username.txt
-    gateway_password:
-        file: ../env_vars/g_password.txt
-    gateway_username:
-        file: ../env_vars/g_username.txt
-    callback:
-        file: ../env_vars/callback_url.txt
-    license:
-        file: ../env_vars/license_key.txt
     secret-proxy-certificate:
         file: ../nginx/dev.localhost.crt
     secret-proxy-key:
