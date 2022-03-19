@@ -13,13 +13,14 @@ services:
         restart: always
         ports:
             - "7070"
+        secrets:
+          - IOT_LICENSE_KEY
+          - IOT_AUTH_CALLBACK
+          - IOT_GATEWAY_USERNAME
+          - IOT_GATEWAY_PASSWORD
         environment:
             - REDIS_URL=redis
-            - IOT_LICENSE_KEY=$license #enter license here, be sure not to have empty space after "=" e.g. IOT_LICENSE_KEY=LBIBA-BRZHX-SVEOU-ARPWB
-            - IOT_AUTH_CALLBACK=$callback  #enter URL here e.g. 192.167.1.1:8080 or myiotc.eastus.azurecontainer.io:8080
             # IOT_ARUBA_USERNAME & IOT_ARUBA_PASSWORD are deprecated.
-            - IOT_GATEWAY_USERNAME=$gateway_username  #enter new username for the AP connection to IoTC. e.g. user1
-            - IOT_GATEWAY_PASSWORD=$gateway_password  #enter new password for the AP connection to IoTC. e.g. gkj35zkjasb5
         depends_on:
             - redis
     api:
@@ -34,9 +35,10 @@ services:
     engine:
         image: enocean/iotconnector_engine:latest
         restart: always
+        secrets:
+          - IOT_LICENSE_KEY
         environment:
             - REDIS_URL=redis
-            - IOT_LICENSE_KEY=$license #enter license here, be sure not to have empty space after "=" e.g. IOT_LICENSE_KEY=LBIBA-BRZHX-SVEOU-ARPWB
             - IOT_ENABLE_MQTT=1 # comment this section out if mqtt is not desired. MQTT_LOCAL_EGRESS_ENABLE is deprecated.
             - MQTT_CONNSTRING=mqtt:1883  # comment this section out if mqtt is not desired. Default path is locally deployed mosquitto broker - for tests only.
             #- MQTT_AUTH=1 # Comment this section out and specficy below credentials to use basic auth for MQTT connections. If you the mosquito broker also use the enocean build.
@@ -63,8 +65,7 @@ services:
             - source: secret-proxy-key
               target: /etc/nginx/certs/cert.key
             - BASIC_AUTH_USERNAME
-        environment:
-            - BASIC_AUTH_PASSWORD="${a_password}"  #enter new password for API connection to IoTC. e.g. 5a4sdFa$dsa
+            - BASIC_AUTH_PASSWORD
         depends_on:
             - ingress
             - api
@@ -94,15 +95,15 @@ volumes:
 secrets:
     BASIC_AUTH_USERNAME:
         file: ../env_vars/a_password.txt
-    auth_username:
+    BASIC_AUTH_PASSWORD:
         file: ../env_vars/a_username.txt
-    gateway_password:
+    IOT_GATEWAY_PASSWORD:
         file: ../env_vars/g_password.txt
-    gateway_username:
+    IOT_GATEWAY_USERNAME:
         file: ../env_vars/g_username.txt
-    callback:
+    IOT_AUTH_CALLBACK:
         file: ../env_vars/callback_url.txt
-    license:
+    IOT_LICENSE_KEY:
         file: ../env_vars/license_key.txt
     secret-proxy-certificate:
         file: ../nginx/dev.localhost.crt
