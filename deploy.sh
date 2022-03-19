@@ -17,6 +17,7 @@ cd deploy/nginx
 openssl genrsa -out dev.localhost.key 2048
 openssl req -new -key dev.localhost.key -subj /CN=NG/ -out dev.localhost.csr
 openssl x509 -req -days 3650 -in dev.localhost.csr -signkey dev.localhost.key -out dev.localhost.key
+mv dev.localhost.csr dev.localhost.crt 
 sudo mkdir -p /etc/nginx/certs
 sudo rm /etc/nginx/nginx.conf
 sudo mv ./nginx.conf /etc/nginx/
