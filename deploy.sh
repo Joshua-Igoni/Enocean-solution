@@ -10,7 +10,7 @@ docker-compose --version
 cd deploy/env_vars
 echo "password" > a_password.txt
 echo "username" > a_username.txt
-echo "34.221.56.204:8080" > callback_url.txt
+echo "52.43.164.208:8080" > callback_url.txt
 echo "password" > g_password.txt
 echo "username" > g_username.txt
 echo "IUBXY-NSFKR-QZPCI-HVMOQ" > license_key.txt
@@ -24,7 +24,8 @@ sudo mv ./nginx.conf /etc/nginx/
 sudo cp ./dev.localhost.crt /etc/nginx/certs 
 sudo cp ./dev.localhost.key /etc/nginx/certs
 sudo mv /etc/nginx/certs/dev.localhost.crt /etc/nginx/certs/certs.crt
-sudo mv /etc/nginx/certs/dev.localhost.key /etc/nginx/certs/certs.key  
+sudo mv /etc/nginx/certs/dev.localhost.key /etc/nginx/certs/certs.key 
+sudo systemctl restart nginx 
 cd ../local_deployment
 docker-compose up -d
 
