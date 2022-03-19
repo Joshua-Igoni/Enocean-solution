@@ -7,9 +7,8 @@ sudo usermod -aG docker $USER
 sudo chown $USER /var/run/docker.sock
 openssl version -a
 docker-compose --version
-cd deploy/env_vars
-echo "password" > a_password.txt
-echo "username" > a_username.txt
+export BASIC_AUTH_USERNAME=username
+export BASIC_AUTH_PASSWORD=password
 echo "52.43.164.208:8080" > callback_url.txt
 echo "password" > g_password.txt
 echo "username" > g_username.txt
