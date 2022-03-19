@@ -15,8 +15,8 @@ echo "username" > g_username.txt
 echo "IUBXY-NSFKR-QZPCI-HVMOQ" > license_key.txt
 cd deploy/nginx
 openssl genrsa -out dev.localhost.key 2048
-openssl req -new -key dev.localhost.key -subj /CN=NG/ -out dev.localhost.crt
-openssl x509 -req -days 3650 -in dev.localhost.crt -signkey dev.localhost.key -out dev.localhost.key
+openssl req -new -key dev.localhost.key -subj /CN=NG/ -out dev.localhost.csr
+openssl x509 -req -days 3650 -in dev.localhost.csr -signkey dev.localhost.key -out dev.localhost.key
 sudo mkdir -p /etc/nginx/certs
 sudo rm /etc/nginx/nginx.conf
 sudo mv ./nginx.conf /etc/nginx/
