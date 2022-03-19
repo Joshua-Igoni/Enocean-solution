@@ -19,7 +19,7 @@ openssl genrsa -out dev.localhost.key 2048
 openssl req -new -key dev.localhost.key -subj /CN=NG/ -out dev.localhost.crt
 openssl x509 -req -days 3650 -in dev.localhost.crt -signkey dev.localhost.key -out dev.localhost.key
 sudo rm /etc/nginx/nginx.conf
-sudo mv nginx.conf /etc/nginx/
+sudo mv ./nginx.conf /etc/nginx/
 cd ../local_deployment
 docker-compose up -d
 
