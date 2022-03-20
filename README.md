@@ -1,7 +1,7 @@
 
 ## Enocean IoTC Auto-Deployment
 
-This repo contains files that automatically deploys Enocean IoTC stack which is made up of three(3) containerized software namely; ingress controller, Engine, and API, additionally a message broker and cache (redis), and a Proxy for security (Nginx). This is meant for customers that operate in the linux environment that wish to automate the deployment of the IoTC stack.
+This repo contains files that automatically deploys Enocean IoTC stack which is made up of three(3) containerized software namely; ingress controller, Engine, and API. Additionally a message broker and cache (redis), and a Proxy for security (Nginx). This is meant for customers that operate in the linux environment that wish to automate the deployment of the IoTC stack.
 
 
 ## Documentation
@@ -11,7 +11,7 @@ This repo contains files that automatically deploys Enocean IoTC stack which is 
 
 ## Environment Variables
 
-A .env file have been provided with the needed environment variables to you just need to supply the values.
+A .env file have been provided with the needed environment variables so you just need to supply the values.
 
 `IOT_LICENSE_KEY`
 
@@ -26,7 +26,7 @@ A .env file have been provided with the needed environment variables to you just
 
 ## Deployment
 
-prior to deploying the stack, there are some basic things that are needed, they include;
+Prior to deploying the stack, there are some basic things that are needed, they include;
 1. Licence key which can be gotten [here](https://www.enocean.com/en/products/tools-kits-iot-software/enocean-iot-connector/#trial-version)
 2. Basic personal Details such as usernames and passwords (to be configured in ".env file")
 3. An ssl certificate.
@@ -50,7 +50,7 @@ This opens up a an environment variable file where you can put in all the detail
 
 ### STEP 3
 
-go back to the root directory in the repo and make script executable
+Go back to the root directory in the repo and make script executable
 
 ```bash
   cd ../..
@@ -64,6 +64,7 @@ Run the script with the following command;
 ```bash
   ./depoy.sh
 ```
+The shell script updates the system binaries and packages, installs docker and docker-compose, creates an ssl certificate (script will prompt you to provide details during runtime), and runs the "docker-compose up" command to deploy IoTC stack.
 
 ### NOTE:
 
@@ -82,4 +83,4 @@ Place the renamed keys in the following directory in the cloned repo
 
 ### Post Deployment
 
-After stack has been successfully deployed, you can procceed to https://your_ip:443 to onboard your devices
+After IoTC stack has been successfully deployed, you can procceed to https://your_ip:443 to onboard your devices
