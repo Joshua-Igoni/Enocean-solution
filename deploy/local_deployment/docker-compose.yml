@@ -93,6 +93,6 @@ volumes:
 #secrets are defined by docker to keep sensitive information hidden
 secrets:
     secret-proxy-certificate:
-        file: ../nginx/dev.localhost.crt
+        file: ../nginx/dev.100.24.8.128.crt
     secret-proxy-key:
-        file: ../nginx/dev.localhost.key
+        file: ../nginx/dev.100.24.8.128.key
