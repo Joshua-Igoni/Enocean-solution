@@ -1,5 +1,11 @@
 version: '3.3'
 services:
+    fluentd:
+        build: ./fluentd
+        volumes:
+            - ./fluentd/conf:fluentd/etc
+        ports:
+            - "24224:24224"
     redis:
         image: redis:latest
         command: redis-server --protected-mode no
@@ -22,6 +28,13 @@ services:
             - IOT_GATEWAY_PASSWORD="${IOT_ARUBA_PASSWORD}"  #enter new password for the AP connection to IoTC. e.g. gkj35zkjasb5
         depends_on:
             - redis
+        links:
+            - fluentd
+        logging:
+            driver: "fluentd"
+            options:
+                fluentd-address: localhost:24224
+                tag: httpd.access
     api:
         image: enocean/iotconnector_api:latest
         ports:
