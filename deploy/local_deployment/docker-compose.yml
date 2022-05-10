@@ -34,7 +34,7 @@ services:
             driver: "fluentd"
             options:
                 fluentd-address: localhost:24224
-                tag: httpd.access
+                tag: 
     api:
         image: enocean/iotconnector_api:latest
         ports:
@@ -44,6 +44,13 @@ services:
             - REDIS_URL=redis
         depends_on:
             - redis
+        links:
+            - fluentd
+        logging:
+            driver: "fluentd"
+            options:
+                fluentd-address: localhost:24224
+                tag: 
     engine:
         image: enocean/iotconnector_engine:latest
         restart: always
@@ -63,6 +70,13 @@ services:
             #MQTT publish PATH can be customized with ENV variables. Please check the Product documentation for details: https://iotconnector-docs.readthedocs.io/en/latest/deployment-notes/#overview-of-environment-variables
         depends_on:
             - redis
+        links:
+            - fluentd
+        logging:
+            driver: "fluentd"
+            options:
+                fluentd-address: localhost:24224
+                tag: 
     proxy:
         image: enocean/proxy:local
         restart: always
@@ -81,6 +95,13 @@ services:
         depends_on:
             - ingress
             - api
+        links:
+        - fluentd
+        logging:
+            driver: "fluentd"
+            options:
+                fluentd-address: localhost:24224
+                tag: 
 
     # mosquitto broker is only deployed for demo purpouses and is not secured nor configured for a commercial deployment.
     # OPTION 1: Please use own broker.
@@ -99,6 +120,13 @@ services:
             #- ALLOW_ANON=true # Set to false for MQTT authentification. Set credentials username and password below.
             #- MQTT_USERNAME=
             #- MQTT_PASSWORD=
+        links:
+            - fluentd
+        logging:
+            driver: "fluentd"
+            options:
+                fluentd-address: localhost:24224
+                tag: 
 
 volumes:
     redis-volume:
